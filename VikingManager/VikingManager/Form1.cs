@@ -12,6 +12,8 @@ namespace VikingManager
 {
     public partial class Form1 : Form
     {
+        GameWorld gw;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +26,14 @@ namespace VikingManager
                 panel1.Visible = true;
             else
                 panel1.Visible = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+                if (gw == null)
+                {
+                    gw = new GameWorld();
+                }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbl_Current_Mission = new System.Windows.Forms.Label();
             this.rtb_Current_Mission = new System.Windows.Forms.RichTextBox();
             this.tc_Main_Stats = new System.Windows.Forms.TabControl();
@@ -43,6 +44,7 @@
             this.lbl_Atl_London_Prec = new System.Windows.Forms.Label();
             this.btn_Atk_London = new System.Windows.Forms.Button();
             this.tab_Soldier = new System.Windows.Forms.TabPage();
+            this.tab_Ship = new System.Windows.Forms.TabPage();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_Cancel_Target = new System.Windows.Forms.Button();
@@ -53,7 +55,7 @@
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tab_Ship = new System.Windows.Forms.TabPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tc_Main_Stats.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_Cities.SuspendLayout();
@@ -230,6 +232,16 @@
             this.tab_Soldier.Text = "Crew";
             this.tab_Soldier.UseVisualStyleBackColor = true;
             // 
+            // tab_Ship
+            // 
+            this.tab_Ship.Location = new System.Drawing.Point(4, 22);
+            this.tab_Ship.Name = "tab_Ship";
+            this.tab_Ship.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Ship.Size = new System.Drawing.Size(154, 252);
+            this.tab_Ship.TabIndex = 2;
+            this.tab_Ship.Text = "Ship";
+            this.tab_Ship.UseVisualStyleBackColor = true;
+            // 
             // pnl_Main
             // 
             this.pnl_Main.Controls.Add(this.rtb_Current_Mission);
@@ -330,15 +342,9 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
-            // tab_Ship
+            // timer1
             // 
-            this.tab_Ship.Location = new System.Drawing.Point(4, 22);
-            this.tab_Ship.Name = "tab_Ship";
-            this.tab_Ship.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Ship.Size = new System.Drawing.Size(154, 252);
-            this.tab_Ship.TabIndex = 2;
-            this.tab_Ship.Text = "Ship";
-            this.tab_Ship.UseVisualStyleBackColor = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -390,6 +396,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TabPage tab_Ship;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
