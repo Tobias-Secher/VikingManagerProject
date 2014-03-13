@@ -37,7 +37,7 @@ namespace VikingManager
 
         public void Add()
         {
-            string txtSQLQuery = "insert into  figur4 values (null,'ole')";
+            string txtSQLQuery = "insert into figur4 values (null,'ole')";
             //txtSQLQuery = "create table figur4(id integer,navn varchar(4), primary key(id))";
 
             ExecuteQuery(txtSQLQuery);
