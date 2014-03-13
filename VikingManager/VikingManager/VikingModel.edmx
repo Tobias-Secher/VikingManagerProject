@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VikingManagerDBModel.Store" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'main.Attack' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Attack">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="ShipID" />
+            <PropertyRef Name="TargetID" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="CityID" Type="integer" Nullable="false" />
+          <Property Name="ShipID" Type="integer" Nullable="false" />
+          <Property Name="TargetID" Type="integer" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="BuildTypeID" Type="integer" Nullable="false" />
+          <Property Name="CityID" Type="integer" Nullable="false" />
+          <Property Name="Level" Type="integer" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Repair" Type="integer" Nullable="false" />
+          <Property Name="Food" Type="integer" Nullable="false" />
+          <Property Name="Equipment" Type="integer" Nullable="false" />
+          <Property Name="Mead" Type="integer" Nullable="false" />
+          <Property Name="HpReg" Type="integer" Nullable="false" />
+          <Property Name="Defence" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="CityNameID" Type="integer" />
+          <Property Name="Inhabitant" Type="integer" Nullable="false" />
+          <Property Name="Gold" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Food" Type="integer" Nullable="false" />
+          <Property Name="Mead" Type="integer" Nullable="false" />
+          <Property Name="Equipment" Type="integer" Nullable="false" />
+          <Property Name="Prisoner" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityName">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Inhabitant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="CityID" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Hp" Type="integer" Nullable="false" />
+          <Property Name="Strength" Type="integer" Nullable="false" />
+          <Property Name="Endurance" Type="integer" Nullable="false" />
+          <Property Name="Morale" Type="integer" Nullable="false" />
+          <Property Name="Leadership" Type="integer" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'main.InhabitantType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InhabitantType">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Level" Type="integer" Nullable="false" />
+          <Property Name="Hp" Type="integer" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="CityID" Type="integer" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type '' is currently not supported for the target Entity Framework version; the column 'main.Soldier' in the table 'Leadership' was excluded.-->
+        <EntityType Name="Soldier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="InhabitantID" Type="integer" Nullable="false" />
+          <Property Name="Level" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Hp" Type="integer" Nullable="false" />
+          <Property Name="Strength" Type="integer" Nullable="false" />
+          <Property Name="Endurance" Type="integer" Nullable="false" />
+          <Property Name="Morale" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Target">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="CityNameID" Type="integer" Nullable="false" />
+          <Property Name="Gold" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Army" Type="integer" Nullable="false" />
+          <Property Name="Distance" Type="integer" Nullable="false" />
+          <Property Name="CityID" Type="integer" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Attack_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attack_0_1">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="ShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attack_0_2">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_0_0">
+          <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="BuildTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_0_1">
+          <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_0_0">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CityNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inhabitant_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Inhabitant" Type="Self.Inhabitant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inhabitant">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ship_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Ship" Type="Self.Ship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ship">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Soldier_0_0">
+          <End Role="Inhabitant" Type="Self.Inhabitant" Multiplicity="1" />
+          <End Role="Soldier" Type="Self.Soldier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inhabitant">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Soldier">
+              <PropertyRef Name="InhabitantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Target_0_0">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="1" />
+          <End Role="Target" Type="Self.Target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Target">
+              <PropertyRef Name="CityNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Target_0_1">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="1" />
+          <End Role="Target" Type="Self.Target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Target">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VikingManagerDBModelStoreContainer">
+          <EntitySet Name="Building" EntityType="Self.Building" store:Type="Tables" />
+          <EntitySet Name="BuildType" EntityType="Self.BuildType" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" store:Type="Tables" />
+          <EntitySet Name="CityName" EntityType="Self.CityName" store:Type="Tables" />
+          <EntitySet Name="Inhabitant" EntityType="Self.Inhabitant" store:Type="Tables" />
+          <EntitySet Name="Ship" EntityType="Self.Ship" store:Type="Tables" />
+          <EntitySet Name="Soldier" EntityType="Self.Soldier" store:Type="Tables" />
+          <EntitySet Name="Target" EntityType="Self.Target" store:Type="Tables" />
+          <EntitySet Name="Attack" EntityType="Self.Attack" store:Type="Tables">
+            <DefiningQuery>SELECT 
+[Attack].[CityID] AS [CityID], 
+[Attack].[ShipID] AS [ShipID], 
+[Attack].[TargetID] AS [TargetID], 
+[Attack].[Time] AS [Time]
+FROM [Attack] AS [Attack]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InhabitantType" EntityType="Self.InhabitantType" store:Type="Tables">
+            <DefiningQuery>SELECT 
+[InhabitantType].[ID] AS [ID], 
+[InhabitantType].[Type] AS [Type]
+FROM [InhabitantType] AS [InhabitantType]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Attack_0_0" Association="Self.FK_Attack_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attack_0_1" Association="Self.FK_Attack_0_1">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attack_0_2" Association="Self.FK_Attack_0_2">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_0_0" Association="Self.FK_Building_0_0">
+            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_0_1" Association="Self.FK_Building_0_1">
+            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_0_0" Association="Self.FK_City_0_0">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inhabitant_0_0" Association="Self.FK_Inhabitant_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Inhabitant" EntitySet="Inhabitant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ship_0_0" Association="Self.FK_Ship_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Ship" EntitySet="Ship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Soldier_0_0" Association="Self.FK_Soldier_0_0">
+            <End Role="Inhabitant" EntitySet="Inhabitant" />
+            <End Role="Soldier" EntitySet="Soldier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Target_0_0" Association="Self.FK_Target_0_0">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="Target" EntitySet="Target" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Target_0_1" Association="Self.FK_Target_0_1">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="Target" EntitySet="Target" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VikingManagerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="BuildTypeID" Type="Int64" Nullable="false" />
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <Property Name="Level" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Repair" Type="Int64" Nullable="false" />
+          <Property Name="Food" Type="Int64" Nullable="false" />
+          <Property Name="Equipment" Type="Int64" Nullable="false" />
+          <Property Name="Mead" Type="Int64" Nullable="false" />
+          <Property Name="HpReg" Type="Int64" Nullable="false" />
+          <Property Name="Defence" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BuildType" Relationship="Self.FK_Building_0_0" FromRole="Building" ToRole="BuildType" />
+          <NavigationProperty Name="BuildType1" Relationship="Self.FK_Building_0_1" FromRole="Building" ToRole="BuildType" />
+        </EntityType>
+        <EntityType Name="BuildType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Building" Relationship="Self.FK_Building_0_0" FromRole="BuildType" ToRole="Building" />
+          <NavigationProperty Name="Building1" Relationship="Self.FK_Building_0_1" FromRole="BuildType" ToRole="Building" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="CityNameID" Type="Int64" />
+          <Property Name="Inhabitant" Type="Int64" Nullable="false" />
+          <Property Name="Gold" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Food" Type="Int64" Nullable="false" />
+          <Property Name="Mead" Type="Int64" Nullable="false" />
+          <Property Name="Equipment" Type="Int64" Nullable="false" />
+          <Property Name="Prisoner" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Attack" Relationship="Self.FK_Attack_0_0" FromRole="City" ToRole="Attack" />
+          <NavigationProperty Name="Attack1" Relationship="Self.FK_Attack_0_1" FromRole="City" ToRole="Attack" />
+          <NavigationProperty Name="Attack2" Relationship="Self.FK_Attack_0_2" FromRole="City" ToRole="Attack" />
+          <NavigationProperty Name="CityName" Relationship="Self.FK_City_0_0" FromRole="City" ToRole="CityName" />
+          <NavigationProperty Name="Inhabitant1" Relationship="Self.FK_Inhabitant_0_0" FromRole="City" ToRole="Inhabitant" />
+          <NavigationProperty Name="Ship" Relationship="Self.FK_Ship_0_0" FromRole="City" ToRole="Ship" />
+        </EntityType>
+        <EntityType Name="CityName">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="Self.FK_City_0_0" FromRole="CityName" ToRole="City" />
+          <NavigationProperty Name="Target" Relationship="Self.FK_Target_0_0" FromRole="CityName" ToRole="Target" />
+          <NavigationProperty Name="Target1" Relationship="Self.FK_Target_0_1" FromRole="CityName" ToRole="Target" />
+        </EntityType>
+        <EntityType Name="Inhabitant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hp" Type="Int64" Nullable="false" />
+          <Property Name="Strength" Type="Int64" Nullable="false" />
+          <Property Name="Endurance" Type="Int64" Nullable="false" />
+          <Property Name="Morale" Type="Int64" Nullable="false" />
+          <Property Name="Leadership" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Inhabitant_0_0" FromRole="Inhabitant" ToRole="City" />
+          <NavigationProperty Name="Soldier" Relationship="Self.FK_Soldier_0_0" FromRole="Inhabitant" ToRole="Soldier" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Level" Type="Int64" Nullable="false" />
+          <Property Name="Hp" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Ship_0_0" FromRole="Ship" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Soldier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="InhabitantID" Type="Int64" Nullable="false" />
+          <Property Name="Level" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hp" Type="Int64" Nullable="false" />
+          <Property Name="Strength" Type="Int64" Nullable="false" />
+          <Property Name="Endurance" Type="Int64" Nullable="false" />
+          <Property Name="Morale" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Inhabitant" Relationship="Self.FK_Soldier_0_0" FromRole="Soldier" ToRole="Inhabitant" />
+        </EntityType>
+        <EntityType Name="Target">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="CityNameID" Type="Int64" Nullable="false" />
+          <Property Name="Gold" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Army" Type="Int64" Nullable="false" />
+          <Property Name="Distance" Type="Int64" Nullable="false" />
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CityName" Relationship="Self.FK_Target_0_0" FromRole="Target" ToRole="CityName" />
+          <NavigationProperty Name="CityName1" Relationship="Self.FK_Target_0_1" FromRole="Target" ToRole="CityName" />
+        </EntityType>
+        <EntityType Name="Attack">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="ShipID" />
+            <PropertyRef Name="TargetID" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <Property Name="ShipID" Type="Int64" Nullable="false" />
+          <Property Name="TargetID" Type="Int64" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Attack_0_0" FromRole="Attack" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_Attack_0_1" FromRole="Attack" ToRole="City" />
+          <NavigationProperty Name="City2" Relationship="Self.FK_Attack_0_2" FromRole="Attack" ToRole="City" />
+        </EntityType>
+        <EntityType Name="InhabitantType">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Building_0_0">
+          <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="BuildTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_0_1">
+          <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attack_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attack_0_1">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="ShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attack_0_2">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Attack" Type="Self.Attack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attack">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_0_0">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CityNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inhabitant_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Inhabitant" Type="Self.Inhabitant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inhabitant">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ship_0_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Ship" Type="Self.Ship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ship">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Target_0_0">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="1" />
+          <End Role="Target" Type="Self.Target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Target">
+              <PropertyRef Name="CityNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Target_0_1">
+          <End Role="CityName" Type="Self.CityName" Multiplicity="1" />
+          <End Role="Target" Type="Self.Target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Target">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Soldier_0_0">
+          <End Role="Inhabitant" Type="Self.Inhabitant" Multiplicity="1" />
+          <End Role="Soldier" Type="Self.Soldier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inhabitant">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Soldier">
+              <PropertyRef Name="InhabitantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VikingManagerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Building" EntityType="Self.Building" />
+          <EntitySet Name="BuildType" EntityType="Self.BuildType" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="CityName" EntityType="Self.CityName" />
+          <EntitySet Name="Inhabitant" EntityType="Self.Inhabitant" />
+          <EntitySet Name="Ship" EntityType="Self.Ship" />
+          <EntitySet Name="Soldier" EntityType="Self.Soldier" />
+          <EntitySet Name="Target" EntityType="Self.Target" />
+          <EntitySet Name="Attack" EntityType="Self.Attack" />
+          <EntitySet Name="InhabitantType" EntityType="Self.InhabitantType" />
+          <AssociationSet Name="FK_Building_0_0" Association="Self.FK_Building_0_0">
+            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_0_1" Association="Self.FK_Building_0_1">
+            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attack_0_0" Association="Self.FK_Attack_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attack_0_1" Association="Self.FK_Attack_0_1">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attack_0_2" Association="Self.FK_Attack_0_2">
+            <End Role="City" EntitySet="City" />
+            <End Role="Attack" EntitySet="Attack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_0_0" Association="Self.FK_City_0_0">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inhabitant_0_0" Association="Self.FK_Inhabitant_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Inhabitant" EntitySet="Inhabitant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ship_0_0" Association="Self.FK_Ship_0_0">
+            <End Role="City" EntitySet="City" />
+            <End Role="Ship" EntitySet="Ship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Target_0_0" Association="Self.FK_Target_0_0">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="Target" EntitySet="Target" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Target_0_1" Association="Self.FK_Target_0_1">
+            <End Role="CityName" EntitySet="CityName" />
+            <End Role="Target" EntitySet="Target" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Soldier_0_0" Association="Self.FK_Soldier_0_0">
+            <End Role="Inhabitant" EntitySet="Inhabitant" />
+            <End Role="Soldier" EntitySet="Soldier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VikingManagerDBModelStoreContainer" CdmEntityContainer="VikingManagerDBEntities">
+          <EntitySetMapping Name="Building">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BuildTypeID" ColumnName="BuildTypeID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Repair" ColumnName="Repair" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Mead" ColumnName="Mead" />
+                <ScalarProperty Name="HpReg" ColumnName="HpReg" />
+                <ScalarProperty Name="Defence" ColumnName="Defence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildType">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.BuildType">
+              <MappingFragment StoreEntitySet="BuildType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CityNameID" ColumnName="CityNameID" />
+                <ScalarProperty Name="Inhabitant" ColumnName="Inhabitant" />
+                <ScalarProperty Name="Gold" ColumnName="Gold" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Mead" ColumnName="Mead" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Prisoner" ColumnName="Prisoner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityName">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.CityName">
+              <MappingFragment StoreEntitySet="CityName">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inhabitant">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Inhabitant">
+              <MappingFragment StoreEntitySet="Inhabitant">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Hp" ColumnName="Hp" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Endurance" ColumnName="Endurance" />
+                <ScalarProperty Name="Morale" ColumnName="Morale" />
+                <ScalarProperty Name="Leadership" ColumnName="Leadership" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ship">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Ship">
+              <MappingFragment StoreEntitySet="Ship">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Hp" ColumnName="Hp" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Soldier">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Soldier">
+              <MappingFragment StoreEntitySet="Soldier">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InhabitantID" ColumnName="InhabitantID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Hp" ColumnName="Hp" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Endurance" ColumnName="Endurance" />
+                <ScalarProperty Name="Morale" ColumnName="Morale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Target">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Target">
+              <MappingFragment StoreEntitySet="Target">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CityNameID" ColumnName="CityNameID" />
+                <ScalarProperty Name="Gold" ColumnName="Gold" />
+                <ScalarProperty Name="Army" ColumnName="Army" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attack">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.Attack">
+              <MappingFragment StoreEntitySet="Attack">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+                <ScalarProperty Name="TargetID" ColumnName="TargetID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InhabitantType">
+            <EntityTypeMapping TypeName="VikingManagerDBModel.InhabitantType">
+              <MappingFragment StoreEntitySet="InhabitantType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

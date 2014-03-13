@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad7b4a4ce98c4db98a91cfc4a4d79709" Name="Diagram1">
+        <EntityTypeShape EntityType="VikingManagerDBModel.Building" Width="1.5" PointX="10" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.BuildType" Width="1.5" PointX="7.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.City" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.CityName" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Inhabitant" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Ship" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Soldier" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Target" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Attack" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.InhabitantType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Building_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Building_0_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Attack_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Attack_0_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Attack_0_2" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_City_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Inhabitant_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Ship_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Target_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Target_0_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Soldier_0_0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
