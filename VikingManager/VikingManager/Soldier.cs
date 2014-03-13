@@ -22,6 +22,7 @@ namespace VikingManager
         public long Strength { get; set; }
         public long Endurance { get; set; }
         public long Morale { get; set; }
+        public long Leadership { get; set; }
     
         public virtual Inhabitant Inhabitant { get; set; }
     }

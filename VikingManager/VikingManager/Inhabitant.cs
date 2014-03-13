@@ -27,8 +27,10 @@ namespace VikingManager
         public long Endurance { get; set; }
         public long Morale { get; set; }
         public long Leadership { get; set; }
+        public long InhabitantType { get; set; }
     
         public virtual City City { get; set; }
         public virtual ICollection<Soldier> Soldier { get; set; }
+        public virtual InhabitantType InhabitantType1 { get; set; }
     }
 }

@@ -28,5 +28,6 @@ namespace VikingManager
     
         public virtual BuildType BuildType { get; set; }
         public virtual BuildType BuildType1 { get; set; }
+        public virtual City City { get; set; }
     }
 }

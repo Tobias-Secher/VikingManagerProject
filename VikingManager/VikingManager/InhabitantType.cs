@@ -14,7 +14,14 @@ namespace VikingManager
     
     public partial class InhabitantType
     {
+        public InhabitantType()
+        {
+            this.Inhabitant = new HashSet<Inhabitant>();
+        }
+    
         public long ID { get; set; }
         public string Type { get; set; }
+    
+        public virtual ICollection<Inhabitant> Inhabitant { get; set; }
     }
 }

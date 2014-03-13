@@ -21,6 +21,7 @@ namespace VikingManager
             this.Attack2 = new HashSet<Attack>();
             this.Inhabitant1 = new HashSet<Inhabitant>();
             this.Ship = new HashSet<Ship>();
+            this.Building = new HashSet<Building>();
         }
     
         public long ID { get; set; }
@@ -38,5 +39,6 @@ namespace VikingManager
         public virtual CityName CityName { get; set; }
         public virtual ICollection<Inhabitant> Inhabitant1 { get; set; }
         public virtual ICollection<Ship> Ship { get; set; }
+        public virtual ICollection<Building> Building { get; set; }
     }
 }

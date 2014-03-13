@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="VikingManagerDBModel.Soldier" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Target" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Attack" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="VikingManagerDBModel.InhabitantType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.InhabitantType" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="VikingManagerDBModel.FK_Building_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="VikingManagerDBModel.FK_Building_0_1" ManuallyRouted="false" />
         <AssociationConnector Association="VikingManagerDBModel.FK_Attack_0_0" ManuallyRouted="false" />
@@ -26,6 +26,8 @@
         <AssociationConnector Association="VikingManagerDBModel.FK_Target_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="VikingManagerDBModel.FK_Target_0_1" ManuallyRouted="false" />
         <AssociationConnector Association="VikingManagerDBModel.FK_Soldier_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Building_0_01" />
+        <AssociationConnector Association="VikingManagerDBModel.FK_Inhabitant_0_01" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

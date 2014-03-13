@@ -18,6 +18,7 @@ namespace VikingManager
         public long ShipID { get; set; }
         public long TargetID { get; set; }
         public System.DateTime Time { get; set; }
+        public long ID { get; set; }
     
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }
