@@ -220,6 +220,99 @@ namespace VikingManager
 
         #region AddStuff
         /// <summary>
+        /// add inhabitant
+        /// </summary>
+        public void InhabitantAdd()
+        {
+            if (soldier == true)
+            {
+                string soldierQuery = "insert into Inhabitant values (null,1,soldier+ID,25,10,5,8,1,4)";
+                ExecuteQuery(soldierQuery);
+            }
+            else
+            {
+                string civilQuery = "insert into Inhabitant values (null,1,Civil+ID,1,null,null,null,null,1)";
+                ExecuteQuery(civilQuery);
+            }
+        }
+        /// <summary>
+        /// add soldier
+        /// </summary>
+        public void SoldierAdd()
+        {
+            if (Crew == true)
+            {
+                string prisenorQuery = "insert into Soldier values (null,1,prisenor+ID,1,null,null,null,null,1)";
+                ExecuteQuery(prisenorQuery);
+            }
+            else
+            {
+                string prisenorQuery = "insert into Soldier values (null,1,prisenor+ID,1,null,null,null,null,1)";
+                ExecuteQuery(prisenorQuery);
+            }
+        }
+
+        /// <summary>
+        /// Adding ships if you have a shipyard
+        /// </summary>
+        public void ShipAdd()
+        {
+            string ShipyardCheckQuery = "select Count(BuildTypeID) from Building where BuildTypeID = 7";
+            if (!string.IsNullOrEmpty(ShipyardCheckQuery))
+            {
+                string shipQuery = "insert into Ship values (null,1,50,50,1)";
+                ExecuteQuery(shipQuery);
+            }
+        }
+        /// <summary>
+        /// Adding building
+        /// </summary>
+        public void BuildingAdd()
+        {
+            int buildingType = 1;
+            string buildingQuery;
+            switch (buildingType)
+            {
+                //field
+                case 1:
+                    buildingQuery = "insert into Building values (null,1,1,1,20,null,15,null,null,null,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Wall
+                case 2:
+                    buildingQuery = "insert into Building values (null,2,1,1,25,null,null,null,null,null,20)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Camp
+                case 3:
+                    buildingQuery = "insert into Building values (null,3,1,1,35,null,null,null,null,null,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Armory
+                case 4:
+                    buildingQuery = "insert into Building values (null,4,1,1,30,null,null,10,null,null,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Brewery
+                case 5:
+                    buildingQuery = "insert into Building values (null,5,1,1,20,null,null,null,20,null,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Infirmary
+                case 6:
+                    buildingQuery = "insert into Building values (null,6,1,1,25,null,null,null,null,5,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+                //Shipyard
+                case 7:
+                    buildingQuery = "insert into Building values (null,7,1,1,20,10,null,null,null,null,null)";
+                    ExecuteQuery(buildingQuery);
+                    break;
+            }
+
+        }
+
+        /// <summary>
         /// Adds something to the database.
         /// </summary>
         public void Add()
