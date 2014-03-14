@@ -28,16 +28,126 @@ namespace VikingManager
         public Form1()
         {
             InitializeComponent();
-            panel1.Visible = false;
+            pnl_Target.Visible = false;
+            tab_Cities.AutoScroll = true;
+            pnl_Build.Visible = false;
         }
 
+        private void tab_Build_Click(object sender, EventArgs e)
+        {
+
+        }
+        #region Attack Buttons
         private void btn_Atk_London_Click(object sender, EventArgs e)
         {
-            if (panel1.Visible == false)
-                panel1.Visible = true;
+            if (pnl_Target.Visible == false)
+                pnl_Target.Visible = true;
             else
-                panel1.Visible = false;
+                pnl_Target.Visible = false;
         }
+
+        private void btn_Atk_NewYork_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Berlin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Paris_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Rom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Barcelona_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Athen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Venice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Atk_Amsterdam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Confirm
+        private void btn_Confirm_Target_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Cancel_Target_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+        #region Build Buttons
+        private void btn_Build_Ship_Yard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Build_Field_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Build_Armory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Build_Brewery_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Build_Infirmary_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Build_Camp_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        private void btn_Show_Build_Pnl_Click(object sender, EventArgs e)
+        {
+            if (pnl_Build.Visible == false)
+                pnl_Build.Visible = true;
+            else
+                pnl_Build.Visible = false;
+        }
+
+        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -108,6 +218,7 @@ namespace VikingManager
             sql_con.Close();
         }
 
+        #region AddStuff
         /// <summary>
         /// Adds something to the database.
         /// </summary>
@@ -118,6 +229,31 @@ namespace VikingManager
 
             ExecuteQuery(txtSQLQuery);
         }
+        #endregion
+
+        #region ModifyStuff
+        #endregion
+
+        #region Deletestuff
+        public void DeleteSoldier(int soldierID)
+        {
+            string soldierDeleteQuery = "Delete ID from Soldier where SoldierID == SoldierID";
+
+            ExecuteQuery(soldierDeleteQuery);
+        }
+
+        public void DeleteShip(int shipID)
+        {
+            string shipDeleteQuery = "Delete ID from Ship where ShipID == ShipID";
+
+            ExecuteQuery(shipDeleteQuery);
+        }
+
+        public void ModifySoldier(int soldierID)
+        {
+
+        }
+        #endregion
 
         /// <summary>
         /// Executes the given query.
@@ -132,7 +268,5 @@ namespace VikingManager
             sql_cmd.ExecuteNonQuery();
             sql_con.Close();
         }
-
-        
     }
 }
