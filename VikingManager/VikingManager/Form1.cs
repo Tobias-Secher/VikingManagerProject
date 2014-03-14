@@ -70,14 +70,14 @@ namespace VikingManager
             //Set new frame start
             lastFrameStarted = DateTime.Now;
 
-            Update();
+            UpdateText();
 
         }
 
         /// <summary>
         /// Update function - should update the text in the textboxes and stuff
         /// </summary>
-        public void Update()
+        public void UpdateText()
         {
 
         }

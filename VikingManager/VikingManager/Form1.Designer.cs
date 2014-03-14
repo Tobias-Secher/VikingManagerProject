@@ -329,16 +329,16 @@
             this.richTextBox2.Location = new System.Drawing.Point(262, 19);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(170, 279);
+            this.richTextBox2.Size = new System.Drawing.Size(170, 283);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(4, 23);
+            this.richTextBox1.Location = new System.Drawing.Point(4, 19);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(160, 279);
+            this.richTextBox1.Size = new System.Drawing.Size(160, 283);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
