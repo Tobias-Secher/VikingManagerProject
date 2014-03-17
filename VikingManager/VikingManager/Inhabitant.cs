@@ -21,12 +21,6 @@ namespace VikingManager
     
         public long ID { get; set; }
         public long CityID { get; set; }
-        public string Name { get; set; }
-        public long Hp { get; set; }
-        public long Strength { get; set; }
-        public long Endurance { get; set; }
-        public long Morale { get; set; }
-        public long Leadership { get; set; }
         public long InhabitantType { get; set; }
     
         public virtual City City { get; set; }

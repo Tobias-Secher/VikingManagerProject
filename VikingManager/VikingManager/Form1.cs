@@ -100,12 +100,12 @@ namespace VikingManager
         #region Build Buttons
         private void btn_Build_Ship_Yard_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(7);
         }
 
         private void btn_Build_Field_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -115,17 +115,17 @@ namespace VikingManager
 
         private void btn_Build_Armory_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(4);
         }
 
         private void Btn_Build_Brewery_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(5);
         }
 
         private void btn_Build_Infirmary_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(6);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -135,7 +135,7 @@ namespace VikingManager
 
         private void btn_Build_Camp_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(3);
         }
         #endregion
 
@@ -198,7 +198,7 @@ namespace VikingManager
         /// </summary>
         public void SetConnection()
         {
-            sql_con = new SQLiteConnection(@"Data Source=C:\Users\Ole\testole.db;Version=3;New=False;Compress=True;");
+            sql_con = new SQLiteConnection(@"Data Source=C:\Users\Claes\Documents\GitHub\VikingManagerProject\VikingManager\VikingManagerDB;Version=3;New=False;Compress=True;");
         }
 
         /// <summary>
@@ -219,6 +219,7 @@ namespace VikingManager
         }
 
         #region AddStuff
+        /*
         /// <summary>
         /// add inhabitant
         /// </summary>
@@ -251,7 +252,7 @@ namespace VikingManager
                 ExecuteQuery(prisenorQuery);
             }
         }
-
+        */
         /// <summary>
         /// Adding ships if you have a shipyard
         /// </summary>
@@ -267,9 +268,8 @@ namespace VikingManager
         /// <summary>
         /// Adding building
         /// </summary>
-        public void BuildingAdd()
+        public void BuildingAdd(int buildingType)
         {
-            int buildingType = 1;
             string buildingQuery;
             switch (buildingType)
             {

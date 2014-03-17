@@ -24,12 +24,12 @@
           <Property Name="CityID" Type="integer" Nullable="false" />
           <Property Name="Level" Type="integer" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="53" Scale="0" Nullable="false" />
-          <Property Name="Repair" Type="integer" Nullable="false" />
-          <Property Name="Food" Type="integer" Nullable="false" />
-          <Property Name="Equipment" Type="integer" Nullable="false" />
-          <Property Name="Mead" Type="integer" Nullable="false" />
-          <Property Name="HpReg" Type="integer" Nullable="false" />
-          <Property Name="Defence" Type="integer" Nullable="false" />
+          <Property Name="Repair" Type="integer" />
+          <Property Name="Food" Type="integer" />
+          <Property Name="Equipment" Type="integer" />
+          <Property Name="Mead" Type="integer" />
+          <Property Name="HpReg" Type="integer" />
+          <Property Name="Defence" Type="integer" />
         </EntityType>
         <EntityType Name="BuildType">
           <Key>
@@ -64,12 +64,6 @@
           </Key>
           <Property Name="ID" Type="integer" Nullable="false" />
           <Property Name="CityID" Type="integer" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="Hp" Type="integer" Nullable="false" />
-          <Property Name="Strength" Type="integer" Nullable="false" />
-          <Property Name="Endurance" Type="integer" Nullable="false" />
-          <Property Name="Morale" Type="integer" Nullable="false" />
-          <Property Name="Leadership" Type="integer" Nullable="false" />
           <Property Name="InhabitantType" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="InhabitantType">
@@ -151,18 +145,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Building_0_0">
-          <End Role="City" Type="Self.City" Multiplicity="1" />
-          <End Role="Building" Type="Self.Building" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Building">
-              <PropertyRef Name="CityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Building_1_0">
           <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
           <End Role="Building" Type="Self.Building" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,11 +156,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Building_1_1">
+        <Association Name="FK_Building_0_1">
           <End Role="BuildType" Type="Self.BuildType" Multiplicity="1" />
           <End Role="Building" Type="Self.Building" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BuildType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_1_0">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Building" Type="Self.Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Building">
@@ -282,15 +276,15 @@
             <End Role="Attack" EntitySet="Attack" />
           </AssociationSet>
           <AssociationSet Name="FK_Building_0_0" Association="Self.FK_Building_0_0">
-            <End Role="City" EntitySet="City" />
+            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="Building" EntitySet="Building" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_0_1" Association="Self.FK_Building_0_1">
+            <End Role="BuildType" EntitySet="BuildType" />
             <End Role="Building" EntitySet="Building" />
           </AssociationSet>
           <AssociationSet Name="FK_Building_1_0" Association="Self.FK_Building_1_0">
-            <End Role="BuildType" EntitySet="BuildType" />
-            <End Role="Building" EntitySet="Building" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Building_1_1" Association="Self.FK_Building_1_1">
-            <End Role="BuildType" EntitySet="BuildType" />
+            <End Role="City" EntitySet="City" />
             <End Role="Building" EntitySet="Building" />
           </AssociationSet>
           <AssociationSet Name="FK_City_0_0" Association="Self.FK_City_0_0">
@@ -386,12 +380,6 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="CityID" Type="Int64" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Hp" Type="Int64" Nullable="false" />
-          <Property Name="Strength" Type="Int64" Nullable="false" />
-          <Property Name="Endurance" Type="Int64" Nullable="false" />
-          <Property Name="Morale" Type="Int64" Nullable="false" />
-          <Property Name="Leadership" Type="Int64" Nullable="false" />
           <NavigationProperty Name="City" Relationship="Self.FK_Inhabitant_0_0" FromRole="Inhabitant" ToRole="City" />
           <NavigationProperty Name="Soldier" Relationship="Self.FK_Soldier_0_0" FromRole="Inhabitant" ToRole="Soldier" />
           <Property Name="InhabitantType" Type="Int64" Nullable="false" />
@@ -736,13 +724,7 @@
                 <ScalarProperty Name="InhabitantType" ColumnName="InhabitantType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Hp" ColumnName="Hp" />
-                <ScalarProperty Name="Strength" ColumnName="Strength" />
-                <ScalarProperty Name="Endurance" ColumnName="Endurance" />
-                <ScalarProperty Name="Morale" ColumnName="Morale" />
-                <ScalarProperty Name="Leadership" ColumnName="Leadership" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ship">

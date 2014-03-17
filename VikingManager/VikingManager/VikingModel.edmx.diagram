@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="VikingManagerDBModel.CityName" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Inhabitant" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Ship" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VikingManagerDBModel.Soldier" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingManagerDBModel.Soldier" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Target" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.Attack" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingManagerDBModel.InhabitantType" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
