@@ -198,7 +198,8 @@ namespace VikingManager
         /// </summary>
         public void SetConnection()
         {
-            sql_con = new SQLiteConnection(@"Data Source=C:\Users\Claes\Documents\GitHub\VikingManagerProject\VikingManager\VikingManagerDB;Version=3;New=False;Compress=True;");
+            sql_con = new SQLiteConnection(@"Data Source=Database\VikingManagerDB;Version=3;New=False;Compress=True;");
+            //C:\Users\Claes\Documents\GitHub\VikingManagerProject\VikingManager\
         }
 
         /// <summary>
@@ -305,7 +306,7 @@ namespace VikingManager
                     break;
                 //Shipyard
                 case 7:
-                    buildingQuery = "insert into Building values (null,7,1,1,20,10,null,null,null,null,null)";
+                    buildingQuery = "insert into Building values(null,7,1,1,20,10,null,null,null,null,null)";
                     ExecuteQuery(buildingQuery);
                     break;
             }
