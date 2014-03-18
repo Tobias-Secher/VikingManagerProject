@@ -69,7 +69,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnl_Build = new System.Windows.Forms.Panel();
-            this.rtb_Build_Upgrade = new System.Windows.Forms.RichTextBox();
             this.btn_Build_Camp = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_Build_Infirmary = new System.Windows.Forms.Button();
@@ -79,6 +78,8 @@
             this.btn_Build_Field = new System.Windows.Forms.Button();
             this.btn_Build_Ship_Yard = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.pnl_Show_Buildings = new System.Windows.Forms.Panel();
+            this.lbl_Show_Buildings = new System.Windows.Forms.Label();
             this.tc_Main_Stats.SuspendLayout();
             this.tab_Ciry_Stat.SuspendLayout();
             this.tab_Build.SuspendLayout();
@@ -88,6 +89,7 @@
             this.pnl_Main.SuspendLayout();
             this.pnl_Target.SuspendLayout();
             this.pnl_Build.SuspendLayout();
+            this.pnl_Show_Buildings.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_Current_Mission
@@ -497,7 +499,7 @@
             // 
             // pnl_Build
             // 
-            this.pnl_Build.Controls.Add(this.rtb_Build_Upgrade);
+            this.pnl_Build.Controls.Add(this.pnl_Show_Buildings);
             this.pnl_Build.Controls.Add(this.btn_Build_Camp);
             this.pnl_Build.Controls.Add(this.button2);
             this.pnl_Build.Controls.Add(this.btn_Build_Infirmary);
@@ -510,14 +512,6 @@
             this.pnl_Build.Name = "pnl_Build";
             this.pnl_Build.Size = new System.Drawing.Size(437, 591);
             this.pnl_Build.TabIndex = 6;
-            // 
-            // rtb_Build_Upgrade
-            // 
-            this.rtb_Build_Upgrade.Location = new System.Drawing.Point(4, 257);
-            this.rtb_Build_Upgrade.Name = "rtb_Build_Upgrade";
-            this.rtb_Build_Upgrade.Size = new System.Drawing.Size(430, 331);
-            this.rtb_Build_Upgrade.TabIndex = 8;
-            this.rtb_Build_Upgrade.Text = "";
             // 
             // btn_Build_Camp
             // 
@@ -599,6 +593,23 @@
             this.btn_Build_Ship_Yard.UseVisualStyleBackColor = true;
             this.btn_Build_Ship_Yard.Click += new System.EventHandler(this.btn_Build_Ship_Yard_Click);
             // 
+            // pnl_Show_Buildings
+            // 
+            this.pnl_Show_Buildings.Controls.Add(this.lbl_Show_Buildings);
+            this.pnl_Show_Buildings.Location = new System.Drawing.Point(4, 177);
+            this.pnl_Show_Buildings.Name = "pnl_Show_Buildings";
+            this.pnl_Show_Buildings.Size = new System.Drawing.Size(430, 367);
+            this.pnl_Show_Buildings.TabIndex = 8;
+            // 
+            // lbl_Show_Buildings
+            // 
+            this.lbl_Show_Buildings.AutoSize = true;
+            this.lbl_Show_Buildings.Location = new System.Drawing.Point(4, 9);
+            this.lbl_Show_Buildings.Name = "lbl_Show_Buildings";
+            this.lbl_Show_Buildings.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Show_Buildings.TabIndex = 0;
+            this.lbl_Show_Buildings.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,6 +636,8 @@
             this.pnl_Target.ResumeLayout(false);
             this.pnl_Target.PerformLayout();
             this.pnl_Build.ResumeLayout(false);
+            this.pnl_Show_Buildings.ResumeLayout(false);
+            this.pnl_Show_Buildings.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -670,7 +683,6 @@
         private System.Windows.Forms.Label lbl_Building_stats;
         private System.Windows.Forms.Label lbl_Camp_Stats;
         private System.Windows.Forms.Panel pnl_Build;
-        private System.Windows.Forms.RichTextBox rtb_Build_Upgrade;
         private System.Windows.Forms.Button btn_Build_Camp;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_Build_Infirmary;
@@ -681,6 +693,8 @@
         private System.Windows.Forms.Button btn_Build_Ship_Yard;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button btn_Show_Build_Pnl;
+        private System.Windows.Forms.Panel pnl_Show_Buildings;
+        private System.Windows.Forms.Label lbl_Show_Buildings;
     }
 }
 
