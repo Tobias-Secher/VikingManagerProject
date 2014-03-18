@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Data.SQLite.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,15 +20,16 @@ namespace VikingManager
         private SQLiteDataAdapter DB;
         private DataSet DS = new DataSet();
         private DataTable DT = new DataTable();
-
         private DateTime lastFrameStarted = new DateTime();
-        private float currentFPS;
+        
 
         //Form1
         #region Form1 stuff
         public Form1()
         {
             InitializeComponent();
+            timer1.Enabled = true;
+            timer1.Interval = 40;
             pnl_Target.Visible = false;
             tab_Cities.AutoScroll = true;
             pnl_Build.Visible = false;
@@ -35,7 +37,7 @@ namespace VikingManager
 
         private void tab_Build_Click(object sender, EventArgs e)
         {
-
+            
         }
         #region Attack Buttons
         private void btn_Atk_London_Click(object sender, EventArgs e)
@@ -151,7 +153,7 @@ namespace VikingManager
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            GameLoop();
+            UpdateText();
         }
         #endregion
 
@@ -168,56 +170,47 @@ namespace VikingManager
         /// <summary>
         /// Makes sure all the update functions is called every frame
         /// </summary>
-        public void GameLoop()
-        {
-            //Time spent since last loop
-            TimeSpan deltaTime = DateTime.Now - lastFrameStarted;
+        //public void GameLoop()
+        //{
+        //    //Time spent since last loop
+        //    TimeSpan deltaTime = DateTime.Now - lastFrameStarted;
 
-            //Convert deltaTime to milliseconds, 1ms minimum
-            int milliSeconds = deltaTime.Milliseconds > 0 ? deltaTime.Milliseconds : 1;
-            currentFPS = 1000 / milliSeconds;
+        //    //Convert deltaTime to milliseconds, 1ms minimum
+        //    int milliSeconds = deltaTime.Milliseconds > 0 ? deltaTime.Milliseconds : 1;
+        //    currentFPS = 1000 / milliSeconds;
 
-            //Set new frame start
-            lastFrameStarted = DateTime.Now;
+        //    //Set new frame start
+        //    lastFrameStarted = DateTime.Now;
 
-            UpdateText();
+        //    UpdateText();
 
-        }
-
+        //}
         /// <summary>
         /// Update function - should update the text in the textboxes and stuff
         /// </summary>
         public void UpdateText()
         {
+            SetConnection();
+            sql_con.Open();
+            SQLiteCommand selectCommand = new SQLiteCommand("select SUM(Repair) from Building where BuildTypeID = 7", sql_con);
+            SQLiteDataReader dataReader = selectCommand.ExecuteReader();
 
+            while (dataReader.Read())
+            {
+                lbl_Building_stats.Text = String.Format("Shipyards repair per minute: {0}", dataReader[0].ToString());
+            }
+
+            dataReader.Close();
+            sql_con.Close();
         }
 
-        /// <summary>
-        /// SQL connection. Call this function when adding something to database. 
-        /// This is also called through the LoadData function.
-        /// </summary>
         public void SetConnection()
         {
             sql_con = new SQLiteConnection(@"Data Source=Database\VikingManagerDB;Version=3;New=False;Compress=True;");
-            //C:\Users\Claes\Documents\GitHub\VikingManagerProject\VikingManager\
         }
 
-        /// <summary>
-        /// Establishes a connection, opens that connection, creates a query in the form of a string, passes that query to the database, closes connection
-        /// </summary>
-        public void LoadData()
-        {
-            SetConnection();
-            sql_con.Open();
-            sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select id, desc from mains";
-            DB = new SQLiteDataAdapter(CommandText, sql_con);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-            //   Grid.DataSource = DT;
-            sql_con.Close();
-        }
+        #region ReadStuff
+        #endregion
 
         #region AddStuff
         /*
@@ -312,27 +305,19 @@ namespace VikingManager
             }
 
         }
-
-        /// <summary>
-        /// Adds something to the database.
-        /// </summary>
-        public void Add()
-        {
-            string txtSQLQuery = "insert into figur4 values (null,'ole')";
-            //txtSQLQuery = "create table figur4(id integer,navn varchar(4), primary key(id))";
-
-            ExecuteQuery(txtSQLQuery);
-        }
         #endregion
 
         #region ModifyStuff
+        public void ModifySoldier(int soldierID)
+        {
+
+        }
         #endregion
 
         #region Deletestuff
         public void DeleteSoldier(int soldierID)
         {
             string soldierDeleteQuery = "Delete ID from Soldier where SoldierID == SoldierID";
-
             ExecuteQuery(soldierDeleteQuery);
         }
 
@@ -341,11 +326,6 @@ namespace VikingManager
             string shipDeleteQuery = "Delete ID from Ship where ShipID == ShipID";
 
             ExecuteQuery(shipDeleteQuery);
-        }
-
-        public void ModifySoldier(int soldierID)
-        {
-
         }
         #endregion
 

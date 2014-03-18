@@ -56,6 +56,7 @@
             this.tab_Soldier = new System.Windows.Forms.TabPage();
             this.tab_Ship = new System.Windows.Forms.TabPage();
             this.pnl_Main = new System.Windows.Forms.Panel();
+            this.btn_Show_Build_Pnl = new System.Windows.Forms.Button();
             this.pnl_Target = new System.Windows.Forms.Panel();
             this.btn_Cancel_Target = new System.Windows.Forms.Button();
             this.btn_Confirm_Target = new System.Windows.Forms.Button();
@@ -78,7 +79,6 @@
             this.btn_Build_Field = new System.Windows.Forms.Button();
             this.btn_Build_Ship_Yard = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.btn_Show_Build_Pnl = new System.Windows.Forms.Button();
             this.tc_Main_Stats.SuspendLayout();
             this.tab_Ciry_Stat.SuspendLayout();
             this.tab_Build.SuspendLayout();
@@ -391,6 +391,16 @@
             this.pnl_Main.Size = new System.Drawing.Size(353, 594);
             this.pnl_Main.TabIndex = 4;
             // 
+            // btn_Show_Build_Pnl
+            // 
+            this.btn_Show_Build_Pnl.Location = new System.Drawing.Point(165, 310);
+            this.btn_Show_Build_Pnl.Name = "btn_Show_Build_Pnl";
+            this.btn_Show_Build_Pnl.Size = new System.Drawing.Size(177, 35);
+            this.btn_Show_Build_Pnl.TabIndex = 4;
+            this.btn_Show_Build_Pnl.Text = "Build";
+            this.btn_Show_Build_Pnl.UseVisualStyleBackColor = true;
+            this.btn_Show_Build_Pnl.Click += new System.EventHandler(this.btn_Show_Build_Pnl_Click);
+            // 
             // pnl_Target
             // 
             this.pnl_Target.Controls.Add(this.btn_Cancel_Target);
@@ -588,16 +598,6 @@
             this.btn_Build_Ship_Yard.Text = "Ship Yard";
             this.btn_Build_Ship_Yard.UseVisualStyleBackColor = true;
             this.btn_Build_Ship_Yard.Click += new System.EventHandler(this.btn_Build_Ship_Yard_Click);
-            // 
-            // btn_Show_Build_Pnl
-            // 
-            this.btn_Show_Build_Pnl.Location = new System.Drawing.Point(165, 310);
-            this.btn_Show_Build_Pnl.Name = "btn_Show_Build_Pnl";
-            this.btn_Show_Build_Pnl.Size = new System.Drawing.Size(177, 35);
-            this.btn_Show_Build_Pnl.TabIndex = 4;
-            this.btn_Show_Build_Pnl.Text = "Build";
-            this.btn_Show_Build_Pnl.UseVisualStyleBackColor = true;
-            this.btn_Show_Build_Pnl.Click += new System.EventHandler(this.btn_Show_Build_Pnl_Click);
             // 
             // Form1
             // 
