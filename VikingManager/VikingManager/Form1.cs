@@ -190,14 +190,27 @@ namespace VikingManager
         /// </summary>
         public void UpdateText()
         {
+
+            ReadText("select SUM(Repair) from Building where BuildTypeID = 7", lbl_Building_stats, "Shipyards repair per minute");
+
+        }
+
+        /// <summary>
+        /// Reads text from database
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="label"></param>
+        /// <param name="extraText"></param>
+        public void ReadText(string query, Label label, string extraText)
+        {
             SetConnection();
             sql_con.Open();
-            SQLiteCommand selectCommand = new SQLiteCommand("select SUM(Repair) from Building where BuildTypeID = 7", sql_con);
+            SQLiteCommand selectCommand = new SQLiteCommand(query, sql_con);
             SQLiteDataReader dataReader = selectCommand.ExecuteReader();
 
             while (dataReader.Read())
             {
-                lbl_Building_stats.Text = String.Format("Shipyards repair per minute: {0}", dataReader[0].ToString());
+                label.Text = String.Format("{0}: {1}", extraText, dataReader[0].ToString());
             }
 
             dataReader.Close();
