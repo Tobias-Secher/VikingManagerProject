@@ -140,17 +140,29 @@ namespace VikingManager
             BuildingAdd(3);
         }
         #endregion
-
         private void btn_Show_Build_Pnl_Click(object sender, EventArgs e)
         {
             if (pnl_Build.Visible == false)
                 pnl_Build.Visible = true;
             else
                 pnl_Build.Visible = false;
+
+            const string sql = "SELECT BuildTypeID FROM Building ORDER BY BuildTypeID";
+            try
+            {
+                sql_con.Open();
+                DataSet ds = new DataSet();
+                var da = new SQLiteDataAdapter(sql, sql_con);
+                da.Fill(ds);
+                grid.DataSource = ds.Tables[0].DefaultView;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
-
-        
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             UpdateText();
@@ -166,25 +178,6 @@ namespace VikingManager
             //Starting FPS timer
             lastFrameStarted = DateTime.Now;
         }
-
-        /// <summary>
-        /// Makes sure all the update functions is called every frame
-        /// </summary>
-        //public void GameLoop()
-        //{
-        //    //Time spent since last loop
-        //    TimeSpan deltaTime = DateTime.Now - lastFrameStarted;
-
-        //    //Convert deltaTime to milliseconds, 1ms minimum
-        //    int milliSeconds = deltaTime.Milliseconds > 0 ? deltaTime.Milliseconds : 1;
-        //    currentFPS = 1000 / milliSeconds;
-
-        //    //Set new frame start
-        //    lastFrameStarted = DateTime.Now;
-
-        //    UpdateText();
-
-        //}
         /// <summary>
         /// Update function - should update the text in the textboxes and stuff
         /// </summary>
@@ -195,6 +188,12 @@ namespace VikingManager
 
         }
 
+        public void SetConnection()
+        {
+            sql_con = new SQLiteConnection(@"Data Source=Database\VikingManagerDB;Version=3;New=False;Compress=True;");
+        }
+
+        #region ReadStuff
         /// <summary>
         /// Reads text from database
         /// </summary>
@@ -216,13 +215,6 @@ namespace VikingManager
             dataReader.Close();
             sql_con.Close();
         }
-
-        public void SetConnection()
-        {
-            sql_con = new SQLiteConnection(@"Data Source=Database\VikingManagerDB;Version=3;New=False;Compress=True;");
-        }
-
-        #region ReadStuff
         #endregion
 
         #region AddStuff

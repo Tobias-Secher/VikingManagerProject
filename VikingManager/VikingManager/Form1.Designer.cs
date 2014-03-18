@@ -69,6 +69,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnl_Build = new System.Windows.Forms.Panel();
+            this.pnl_Show_Buildings = new System.Windows.Forms.Panel();
+            this.lbl_Show_Buildings = new System.Windows.Forms.Label();
             this.btn_Build_Camp = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_Build_Infirmary = new System.Windows.Forms.Button();
@@ -78,8 +80,7 @@
             this.btn_Build_Field = new System.Windows.Forms.Button();
             this.btn_Build_Ship_Yard = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.pnl_Show_Buildings = new System.Windows.Forms.Panel();
-            this.lbl_Show_Buildings = new System.Windows.Forms.Label();
+            this.grid = new System.Windows.Forms.DataGridView();
             this.tc_Main_Stats.SuspendLayout();
             this.tab_Ciry_Stat.SuspendLayout();
             this.tab_Build.SuspendLayout();
@@ -90,6 +91,7 @@
             this.pnl_Target.SuspendLayout();
             this.pnl_Build.SuspendLayout();
             this.pnl_Show_Buildings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_Current_Mission
@@ -513,6 +515,24 @@
             this.pnl_Build.Size = new System.Drawing.Size(437, 591);
             this.pnl_Build.TabIndex = 6;
             // 
+            // pnl_Show_Buildings
+            // 
+            this.pnl_Show_Buildings.Controls.Add(this.grid);
+            this.pnl_Show_Buildings.Controls.Add(this.lbl_Show_Buildings);
+            this.pnl_Show_Buildings.Location = new System.Drawing.Point(4, 177);
+            this.pnl_Show_Buildings.Name = "pnl_Show_Buildings";
+            this.pnl_Show_Buildings.Size = new System.Drawing.Size(430, 367);
+            this.pnl_Show_Buildings.TabIndex = 8;
+            // 
+            // lbl_Show_Buildings
+            // 
+            this.lbl_Show_Buildings.AutoSize = true;
+            this.lbl_Show_Buildings.Location = new System.Drawing.Point(4, 9);
+            this.lbl_Show_Buildings.Name = "lbl_Show_Buildings";
+            this.lbl_Show_Buildings.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Show_Buildings.TabIndex = 0;
+            this.lbl_Show_Buildings.Text = "label1";
+            // 
             // btn_Build_Camp
             // 
             this.btn_Build_Camp.Location = new System.Drawing.Point(166, 65);
@@ -593,22 +613,13 @@
             this.btn_Build_Ship_Yard.UseVisualStyleBackColor = true;
             this.btn_Build_Ship_Yard.Click += new System.EventHandler(this.btn_Build_Ship_Yard_Click);
             // 
-            // pnl_Show_Buildings
+            // grid
             // 
-            this.pnl_Show_Buildings.Controls.Add(this.lbl_Show_Buildings);
-            this.pnl_Show_Buildings.Location = new System.Drawing.Point(4, 177);
-            this.pnl_Show_Buildings.Name = "pnl_Show_Buildings";
-            this.pnl_Show_Buildings.Size = new System.Drawing.Size(430, 367);
-            this.pnl_Show_Buildings.TabIndex = 8;
-            // 
-            // lbl_Show_Buildings
-            // 
-            this.lbl_Show_Buildings.AutoSize = true;
-            this.lbl_Show_Buildings.Location = new System.Drawing.Point(4, 9);
-            this.lbl_Show_Buildings.Name = "lbl_Show_Buildings";
-            this.lbl_Show_Buildings.Size = new System.Drawing.Size(35, 13);
-            this.lbl_Show_Buildings.TabIndex = 0;
-            this.lbl_Show_Buildings.Text = "label1";
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Location = new System.Drawing.Point(228, 9);
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(199, 355);
+            this.grid.TabIndex = 1;
             // 
             // Form1
             // 
@@ -638,6 +649,7 @@
             this.pnl_Build.ResumeLayout(false);
             this.pnl_Show_Buildings.ResumeLayout(false);
             this.pnl_Show_Buildings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -695,6 +707,7 @@
         private System.Windows.Forms.Button btn_Show_Build_Pnl;
         private System.Windows.Forms.Panel pnl_Show_Buildings;
         private System.Windows.Forms.Label lbl_Show_Buildings;
+        private System.Windows.Forms.DataGridView grid;
     }
 }
 
