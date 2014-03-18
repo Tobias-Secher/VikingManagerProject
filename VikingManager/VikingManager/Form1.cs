@@ -21,7 +21,12 @@ namespace VikingManager
         private DataSet DS = new DataSet();
         private DataTable DT = new DataTable();
         private DateTime lastFrameStarted = new DateTime();
-        
+
+        private string[] buildingQueries;
+        private string[] buildingText;
+
+        private int ownedBuildings;
+        private string[] dummyString = new string[1];
 
         //Form1
         #region Form1 stuff
@@ -29,10 +34,12 @@ namespace VikingManager
         {
             InitializeComponent();
             timer1.Enabled = true;
-            timer1.Interval = 40;
+            timer1.Interval = 1000;
             pnl_Target.Visible = false;
             tab_Cities.AutoScroll = true;
             pnl_Build.Visible = false;
+
+            SetupWorld();
         }
 
         private void tab_Build_Click(object sender, EventArgs e)
@@ -110,9 +117,9 @@ namespace VikingManager
             BuildingAdd(1);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_Build_Wall_Click(object sender, EventArgs e)
         {
-
+            BuildingAdd(2);
         }
 
         private void btn_Build_Armory_Click(object sender, EventArgs e)
@@ -130,11 +137,6 @@ namespace VikingManager
             BuildingAdd(6);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Build_Camp_Click(object sender, EventArgs e)
         {
             BuildingAdd(3);
@@ -147,15 +149,15 @@ namespace VikingManager
             else
                 pnl_Build.Visible = false;
 
-            const string sql = "SELECT BuildTypeID FROM Building ORDER BY BuildTypeID";
+            const string ShowBuildSQL = "SELECT BuildType.ID, BuildType.Name FROM BuildType INNER JOIN Building ON BuildType.ID=Building.BuildTypeID ORDER BY BuildType.ID";
             try
             {
                 sql_con.Open();
                 DataSet ds = new DataSet();
-                var da = new SQLiteDataAdapter(sql, sql_con);
+                var da = new SQLiteDataAdapter(ShowBuildSQL, sql_con);
                 da.Fill(ds);
                 grid.DataSource = ds.Tables[0].DefaultView;
-
+                sql_con.Close();
             }
             catch (Exception)
             {
@@ -177,6 +179,66 @@ namespace VikingManager
         {
             //Starting FPS timer
             lastFrameStarted = DateTime.Now;
+            buildingQueries = new string[7];
+            buildingText = new string[7];
+
+            //Adding buildingQueries and buildingText
+            for (int i = 0; i < 7; i++)
+			{
+                string query = string.Empty;
+                string text = string.Empty;
+
+                if (i == 0)
+                {
+                    query = "select SUM(Food) from Building where BuildTypeID = 1";
+                    text = "Fields food per minute";
+                }
+                if (i == 1)
+                {
+                    query = "select SUM(Defence) from Building where BuildTypeID = 2";
+                    text = "Wall defenses";
+                }
+                //if (i == 2)
+                //{
+                //    query = "select SUM(Equipment) from Building where BuildTypeID = 3";
+                //    text = "Number of prisoners";
+                //}
+                if (i == 3)
+                {
+                    query = "select SUM(Equipment) from Building where BuildTypeID = 4";
+                    text = "Armory equipment per minute";
+                }
+                if (i == 4)
+                {
+                    query = "select SUM(Mead) from Building where BuildTypeID = 5";
+                    text = "Brewery mead per minute";
+                }
+                if (i == 5)
+                {
+                    query = "select SUM(HpReg) from Building where BuildTypeID = 6";
+                    text = "Infirmary regen per minute";
+                }
+                if (i == 6)
+                {
+                    query = "select SUM(Repair) from Building where BuildTypeID = 7";
+                    text = "Shipyards repair per minute";
+                }
+
+                buildingQueries[i] = query;
+                buildingText[i] = text;
+			}
+
+            ownedBuildings = CountThings("select * from Building where CityID = 1");
+            dummyString = new string[ownedBuildings];
+            for (int i = 0; i < ownedBuildings; i++)
+            {
+                dummyString[i] = "SELECT BuildTypeID FROM Building WHERE CityID=1 ORDER BY BuildTypeID";
+            }
+            
+            ReadText(dummyString, lbl_Show_Buildings, dummyString);
+
+            dummyString = new string[1];
+            
         }
         /// <summary>
         /// Update function - should update the text in the textboxes and stuff
@@ -184,7 +246,21 @@ namespace VikingManager
         public void UpdateText()
         {
 
-            ReadText("select SUM(Repair) from Building where BuildTypeID = 7", lbl_Building_stats, "Shipyards repair per minute");
+            //Check if new buildings have been built
+            int temp = CountThings("select * from Building where CityID = 1");
+
+            //ReadText()
+            if (temp != ownedBuildings)
+            {
+                dummyString = new string[temp];
+                for (int i = 0; i < ownedBuildings; i++)
+                {
+                    dummyString[i] = "SELECT BuildTypeID FROM Building WHERE CityID=1 ORDER BY BuildTypeID";
+                }
+                ReadText(dummyString, lbl_Show_Buildings, dummyString);
+                ownedBuildings = temp;
+            }
+            ReadText(buildingQueries, lbl_Building_stats, buildingText);
 
         }
 
@@ -197,23 +273,85 @@ namespace VikingManager
         /// <summary>
         /// Reads text from database
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="label"></param>
-        /// <param name="extraText"></param>
-        public void ReadText(string query, Label label, string extraText)
+        /// <param name="query">The SQL queries run to find results</param>
+        /// <param name="label">The box where the text should be</param>
+        /// <param name="extraText">Text that will be written before the query result
+        /// in the final output</param>
+        public void ReadText(string[] query, Label label, string[] extraText)
         {
+            SetConnection();
+            sql_con.Open();
+            List<string> queries = new List<string>();
+            SQLiteCommand selectCommand = new SQLiteCommand(query[0], sql_con);
+            SQLiteDataReader dataReader = selectCommand.ExecuteReader();
+            
+
+            if (query.Length == 1)
+            {
+                while (dataReader.Read())
+                {
+                    queries.Add(dataReader[0].ToString());
+                }
+            }
+            
+
+            if (query.Length > 1)
+            {
+                for (int i = 0; i < query.Length; i++)
+                {
+                    if (query[i].Length > 1)
+                    {
+                        dataReader.Close();
+                        selectCommand = new SQLiteCommand(query[i], sql_con);
+                        dataReader = selectCommand.ExecuteReader();
+                        dataReader.Read();
+                        queries.Add(dataReader[0].ToString());
+                        dataReader.Close();
+                    }
+                    else
+                        queries.Add("");
+                }
+            }
+            dataReader.Close();
+            sql_con.Close();
+
+            
+            //for (int i = 0; i < length; i++)
+            //{
+            string tempOldText;
+            string tempNewText;
+
+            tempOldText = label.Text;
+            tempNewText = string.Empty;
+
+            for (int i = 0; i < query.Length; i++)
+            {
+                if (extraText[i].Length > 1)
+                tempNewText += String.Format("{0}: {1}", extraText[i], queries[queries.Count() - i - 1] + Environment.NewLine);
+            }
+
+            if (tempNewText != tempOldText)
+            {
+                label.Text = tempNewText;
+            }
+
+        }
+
+        public int CountThings(string query)
+        {
+            int temp = 0;
+            
             SetConnection();
             sql_con.Open();
             SQLiteCommand selectCommand = new SQLiteCommand(query, sql_con);
             SQLiteDataReader dataReader = selectCommand.ExecuteReader();
-
-            while (dataReader.Read())
+            while(dataReader.Read())
             {
-                label.Text = String.Format("{0}: {1}", extraText, dataReader[0].ToString());
+                temp++;
             }
-
-            dataReader.Close();
             sql_con.Close();
+            return temp;
+
         }
         #endregion
 

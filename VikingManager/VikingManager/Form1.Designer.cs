@@ -70,17 +70,16 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnl_Build = new System.Windows.Forms.Panel();
             this.pnl_Show_Buildings = new System.Windows.Forms.Panel();
+            this.grid = new System.Windows.Forms.DataGridView();
             this.lbl_Show_Buildings = new System.Windows.Forms.Label();
             this.btn_Build_Camp = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btn_Build_Infirmary = new System.Windows.Forms.Button();
             this.Btn_Build_Brewery = new System.Windows.Forms.Button();
             this.btn_Build_Armory = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Build_Wall = new System.Windows.Forms.Button();
             this.btn_Build_Field = new System.Windows.Forms.Button();
             this.btn_Build_Ship_Yard = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.grid = new System.Windows.Forms.DataGridView();
             this.tc_Main_Stats.SuspendLayout();
             this.tab_Ciry_Stat.SuspendLayout();
             this.tab_Build.SuspendLayout();
@@ -503,11 +502,10 @@
             // 
             this.pnl_Build.Controls.Add(this.pnl_Show_Buildings);
             this.pnl_Build.Controls.Add(this.btn_Build_Camp);
-            this.pnl_Build.Controls.Add(this.button2);
             this.pnl_Build.Controls.Add(this.btn_Build_Infirmary);
             this.pnl_Build.Controls.Add(this.Btn_Build_Brewery);
             this.pnl_Build.Controls.Add(this.btn_Build_Armory);
-            this.pnl_Build.Controls.Add(this.button1);
+            this.pnl_Build.Controls.Add(this.btn_Build_Wall);
             this.pnl_Build.Controls.Add(this.btn_Build_Field);
             this.pnl_Build.Controls.Add(this.btn_Build_Ship_Yard);
             this.pnl_Build.Location = new System.Drawing.Point(842, 13);
@@ -524,6 +522,14 @@
             this.pnl_Show_Buildings.Size = new System.Drawing.Size(430, 367);
             this.pnl_Show_Buildings.TabIndex = 8;
             // 
+            // grid
+            // 
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Location = new System.Drawing.Point(228, 9);
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(199, 355);
+            this.grid.TabIndex = 1;
+            // 
             // lbl_Show_Buildings
             // 
             this.lbl_Show_Buildings.AutoSize = true;
@@ -535,23 +541,13 @@
             // 
             // btn_Build_Camp
             // 
-            this.btn_Build_Camp.Location = new System.Drawing.Point(166, 65);
+            this.btn_Build_Camp.Location = new System.Drawing.Point(85, 65);
             this.btn_Build_Camp.Name = "btn_Build_Camp";
             this.btn_Build_Camp.Size = new System.Drawing.Size(75, 55);
             this.btn_Build_Camp.TabIndex = 7;
             this.btn_Build_Camp.Text = "Camp";
             this.btn_Build_Camp.UseVisualStyleBackColor = true;
             this.btn_Build_Camp.Click += new System.EventHandler(this.btn_Build_Camp_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(85, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 55);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "infirmary";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_Build_Infirmary
             // 
@@ -583,15 +579,15 @@
             this.btn_Build_Armory.UseVisualStyleBackColor = true;
             this.btn_Build_Armory.Click += new System.EventHandler(this.btn_Build_Armory_Click);
             // 
-            // button1
+            // btn_Build_Wall
             // 
-            this.button1.Location = new System.Drawing.Point(166, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 55);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Field";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Build_Wall.Location = new System.Drawing.Point(166, 4);
+            this.btn_Build_Wall.Name = "btn_Build_Wall";
+            this.btn_Build_Wall.Size = new System.Drawing.Size(75, 55);
+            this.btn_Build_Wall.TabIndex = 2;
+            this.btn_Build_Wall.Text = "Wall";
+            this.btn_Build_Wall.UseVisualStyleBackColor = true;
+            this.btn_Build_Wall.Click += new System.EventHandler(this.btn_Build_Wall_Click);
             // 
             // btn_Build_Field
             // 
@@ -612,14 +608,6 @@
             this.btn_Build_Ship_Yard.Text = "Ship Yard";
             this.btn_Build_Ship_Yard.UseVisualStyleBackColor = true;
             this.btn_Build_Ship_Yard.Click += new System.EventHandler(this.btn_Build_Ship_Yard_Click);
-            // 
-            // grid
-            // 
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(228, 9);
-            this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(199, 355);
-            this.grid.TabIndex = 1;
             // 
             // Form1
             // 
@@ -696,11 +684,10 @@
         private System.Windows.Forms.Label lbl_Camp_Stats;
         private System.Windows.Forms.Panel pnl_Build;
         private System.Windows.Forms.Button btn_Build_Camp;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_Build_Infirmary;
         private System.Windows.Forms.Button Btn_Build_Brewery;
         private System.Windows.Forms.Button btn_Build_Armory;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Build_Wall;
         private System.Windows.Forms.Button btn_Build_Field;
         private System.Windows.Forms.Button btn_Build_Ship_Yard;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
